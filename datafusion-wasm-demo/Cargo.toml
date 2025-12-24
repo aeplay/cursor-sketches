@@ -3,16 +3,19 @@ name = "datafusion-wasm-demo"
 version = "0.1.0"
 edition = "2021"
 
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
-# Use older versions compatible with Rust 1.82
-datafusion-sql = "43"
-datafusion-common = "43"
-datafusion-expr = "43"
+datafusion-sql = "44"
+datafusion-common = "44"
+datafusion-expr = "44"
 wasm-bindgen = "0.2.95"
 arrow-schema = "53"
+getrandom = { version = "0.3", features = ["wasm_js"] }
 
 [profile.release]
 opt-level = "z"

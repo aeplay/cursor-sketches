@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DataFusion WASM Demo</title>
+    <style>
+        body { font-family: monospace; padding: 20px; max-width: 800px; margin: 0 auto; }
+        textarea { width: 100%; height: 80px; font-family: monospace; }
+        pre { background: #f4f4f4; padding: 15px; overflow-x: auto; white-space: pre-wrap; }
+        button { padding: 10px 20px; margin: 10px 0; cursor: pointer; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>DataFusion SQL Parser (WASM)</h1>
+    <p id="tables"></p>
+    <label for="sql">Enter SQL Query:</label>
+    <textarea id="sql">SELECT u.name, COUNT(o.order_id) as order_count, SUM(o.amount) as total_spent
+FROM users u
+JOIN orders o ON u.id = o.user_id
+WHERE u.age > 25
+GROUP BY u.name
+ORDER BY total_spent DESC</textarea>
+    <br>
+    <button onclick="parseSql()">Parse SQL</button>
+    <h2>Logical Plan:</h2>
+    <pre id="output">Click "Parse SQL" to see the logical plan</pre>
+
+    <script type="module">
+        import init, { parse_sql_to_plan, get_available_tables } from './pkg/datafusion_wasm_demo.js';
+
+        async function run() {
+            await init();
+            document.getElementById('tables').textContent = get_available_tables();
+            window.parseSql = function() {
+                const sql = document.getElementById('sql').value;
+                const result = parse_sql_to_plan(sql);
+                document.getElementById('output').textContent = result;
+            };
+            // Parse on load
+            window.parseSql();
+        }
+        run();
+    </script>
+</body>
+</html>
