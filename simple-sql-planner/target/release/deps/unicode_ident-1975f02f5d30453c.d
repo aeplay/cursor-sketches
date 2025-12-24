@@ -1,0 +1,8 @@
+/workspace/simple-sql-planner/target/release/deps/unicode_ident-1975f02f5d30453c.d: /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.22/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.22/src/tables.rs
+
+/workspace/simple-sql-planner/target/release/deps/libunicode_ident-1975f02f5d30453c.rlib: /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.22/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.22/src/tables.rs
+
+/workspace/simple-sql-planner/target/release/deps/libunicode_ident-1975f02f5d30453c.rmeta: /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.22/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.22/src/tables.rs
+
+/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.22/src/lib.rs:
+/usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/unicode-ident-1.0.22/src/tables.rs:
