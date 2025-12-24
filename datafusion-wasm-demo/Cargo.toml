@@ -1,0 +1,22 @@
+[package]
+name = "datafusion-wasm-demo"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# Use older versions compatible with Rust 1.82
+datafusion-sql = "43"
+datafusion-common = "43"
+datafusion-expr = "43"
+wasm-bindgen = "0.2.95"
+arrow-schema = "53"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
