@@ -1,0 +1,24 @@
+[package]
+name = "datafusion-wasm-demo"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+datafusion-sql = { path = "./patched-sql", default-features = false, features = [] }
+datafusion-common = { path = "./patched-common", default-features = false }
+datafusion-expr = { path = "./patched-expr", default-features = false }
+wasm-bindgen = "0.2.95"
+getrandom = { version = "0.3", features = ["wasm_js"] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

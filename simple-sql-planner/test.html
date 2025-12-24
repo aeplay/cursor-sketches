@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple SQL Planner (WASM)</title>
+    <style>
+        body { font-family: monospace; padding: 20px; max-width: 900px; margin: 0 auto; }
+        textarea { width: 100%; height: 100px; font-family: monospace; }
+        pre { background: #f4f4f4; padding: 15px; overflow-x: auto; white-space: pre-wrap; }
+        button { padding: 10px 20px; margin: 10px 0; cursor: pointer; }
+        h1 { color: #333; }
+        .stats { background: #e8f5e9; padding: 10px; border-radius: 4px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Simple SQL Planner (352 KB gzipped!)</h1>
+    <div class="stats">
+        <strong>Bundle Size:</strong> 1.1 MB raw / 352 KB gzipped (vs 4.8 MB / 1.2 MB with DataFusion)
+    </div>
+    <p id="tables"></p>
+    <label for="sql">Enter SQL Query:</label>
+    <textarea id="sql">SELECT u.name, COUNT(o.order_id) as order_count, SUM(o.amount) as total_spent
+FROM users u
+JOIN orders o ON u.id = o.user_id
+WHERE u.age > 25
+GROUP BY u.name
+ORDER BY total_spent DESC
+LIMIT 10</textarea>
+    <br>
+    <button onclick="parseSql()">Parse SQL</button>
+    <h2>Logical Plan:</h2>
+    <pre id="output">Click "Parse SQL" to see the logical plan</pre>
+
+    <script type="module">
+        import init, { parse_sql_to_plan, get_available_tables } from './pkg/simple_sql_planner.js';
+
+        async function run() {
+            await init();
+            document.getElementById('tables').textContent = get_available_tables();
+            window.parseSql = function() {
+                const sql = document.getElementById('sql').value;
+                const result = parse_sql_to_plan(sql);
+                document.getElementById('output').textContent = result;
+            };
+            // Parse on load
+            window.parseSql();
+        }
+        run();
+    </script>
+</body>
+</html>
