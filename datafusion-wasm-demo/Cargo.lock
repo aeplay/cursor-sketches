@@ -533,6 +533,9 @@ dependencies = [
 name = "datafusion-wasm-demo"
 version = "0.1.0"
 dependencies = [
+ "arrow",
+ "arrow-array",
+ "arrow-buffer",
  "arrow-schema",
  "datafusion-common",
  "datafusion-expr",
